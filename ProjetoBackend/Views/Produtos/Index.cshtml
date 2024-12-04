@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProjetoBackend.Models.Produto>
+
+@{
+    ViewData["Title"] = "Produtos";
+}
+<div class="conteudo">
+    <h1>Produtos</h1>
+    <!-- Barra de busca -->
+    <div class="search-bar">
+        <form asp-action="Search" method="get">
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar cliente">
+                <ion-icon name="search-outline"></ion-icon>
+            </div>
+        </form>
+    </div>
+
+    <a asp-action="Create" class="add-btn">
+        <ion-icon name="add-circle-outline"></ion-icon>
+    </a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Preco)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estoque)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Categoria)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Preco)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estoque)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Categoria.Nome)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ProdutoId">Editar</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ProdutoId">Deletar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

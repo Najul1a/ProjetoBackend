@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - Corea Food</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ProjetoBackend.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="../img/logo corea.png" alt="" class="logo" />
+            <nav id="site-navigation" class="main-navigation">
+
+                <ul>
+                    <li><a href="/">Página Inicial</a></li>
+                    <li><a href="/Home/Sobre">Sobre nós</a></li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li><a href="/Clientes/Index">Cliente</a></li>
+                        <li><a href="/Fornecedores/Index">Fornecedores</a></li>
+                        <li><a href="/Categorias/Index">Categoria de produtos</a></li>
+                        <li><a href="/Produtos/Index">Produtos</a></li>
+                        <li><a href="/Vendas/Index">Vendas</a></li>
+                    }
+                </ul>
+
+
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="">
+                <ion-icon name="search-outline"></ion-icon>
+            </div>
+        </div>
+        <div class="carrinho">
+            <ion-icon name="cart-outline"></ion-icon>
+        </div>
+        <div class="perfil">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login"><ion-icon name="person-circle-outline"></ion-icon></a>
+
+
+        </div>
+    </header>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <footer class="footer rodape">
+        <div class="footer-info">
+            <p>Contato: coreafood@example.comp | Endereço: Rua das Coreanas, 123, Brasil</p>
+        </div>
+    </footer>
+
+
+    <script type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+</body>
+</html>

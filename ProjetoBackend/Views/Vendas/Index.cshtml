@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ProjetoBackend.Models.Venda>
+
+@{
+    ViewData["Title"] = "Vendas";
+}
+
+<div class="conteudo">
+
+    <h1>Vendas</h1>
+
+    <div class="search-bar">
+        <form asp-action="Search" method="get">
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar cliente">
+                <ion-icon name="search-outline"></ion-icon>
+            </div>
+        </form>
+    </div>
+
+    <a asp-action="Create" class="add-btn">
+        <ion-icon name="add-circle-outline"></ion-icon>
+    </a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NotaFiscal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataVenda)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ValorTotal)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NotaFiscal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataVenda)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorTotal)
+                    </td>
+                    <td>
+                        <a asp-controller="ItensVendas" asp-action="Index" asp-route-id="@item.VendaId">Produtos</a> |
+                        <a asp-action="Edit" asp-route-id="@item.VendaId">Editar</a> |
+                        <a asp-action="Delete" asp-route-id="@item.VendaId">Deletar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

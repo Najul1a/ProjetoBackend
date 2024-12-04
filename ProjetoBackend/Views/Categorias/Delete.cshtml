@@ -1,0 +1,27 @@
+﻿@model ProjetoBackend.Models.Categoria
+
+@{
+    ViewData["Title"] = "Deletar";
+}
+<div class="conteudo">
+    <h1>Deletar</h1>
+
+    <h3>Você deseja deletar está conta?</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="CategoriaId" />
+            <input type="submit" value="Deletar" class="btn btn-danger" /> |
+            <a asp-action="Index">  Voltar para a lista</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProjetoBackend.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<div class="conteudo">
+    <h1>Clientes</h1>
+
+    <!-- Barra de busca -->
+    <div class="search-bar">
+        <form asp-action="Search" method="get">
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar cliente">
+                <ion-icon name="search-outline"></ion-icon>
+            </div>
+        </form>
+    </div>
+
+    <a asp-action="Create" class="add-btn">
+        <ion-icon name="add-circle-outline"></ion-icon>
+    </a>
+
+    <!-- Tabela de clientes -->
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <th>@Html.DisplayNameFor(model => model.CnpjCpf)</th>
+                <th>@Html.DisplayNameFor(model => model.Celular)</th>
+                <th>@Html.DisplayNameFor(model => model.DataNascimento)</th>
+                <th>@Html.DisplayNameFor(model => model.DataCadastro)</th>
+                <th>@Html.DisplayNameFor(model => model.CadastroAtivo)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CnpjCpf)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Celular)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DataNascimento)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DataCadastro)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CadastroAtivo)</td>
+
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ClienteId">Editar</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ClienteId">Deletar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
